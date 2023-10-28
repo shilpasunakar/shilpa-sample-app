@@ -5,7 +5,8 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  # Define a custom tag based on the build ID or any other desired method.
+  customTag: $(Build.BuildId)
 
 stages:
 - stage: Build
@@ -14,28 +15,28 @@ stages:
   - job: Build
     displayName: Build
     pool:
-     name: default
+     vmImage: 'ubuntu-latest'
     steps:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        command: 'build'
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
-          $(tag)
+          shilpasunakar/shilpawebappgaea:$(customTag)
         containerRegistry: 'Shilpa-exto-dockerhub' 
 
     - task: Docker@2
       displayName: Docker Login
       inputs:
-        command: login
-        containerRegistry: 'Shilpa-exto-dockerhub' 
+        command: 'login'
+        containerRegistry: 'Shilpa-exto-dockerhub'
 
     - task: Docker@2
       displayName: Push the image to Docker Hub
       inputs:
-        command: push
-        containerRegistry: 'Shilpa-exto-dockerhub' 
+        command: 'push'
+        containerRegistry: 'Shilpa-exto-dockerhub'
         repository: 'shilpasunakar/shilpawebappgaea'
         tags: |
-           $(tag)
+          shilpasunakar/shilpawebappgaea:$(customTag)
