@@ -22,7 +22,7 @@ stages:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
-          $(tag)
+          '$(tag)'
         containerRegistry: 'Shilpa-exto-dockerhub' 
 
     - task: Docker@2
@@ -38,4 +38,4 @@ stages:
         containerRegistry: 'Shilpa-exto-dockerhub' 
         repository: 'shilpasunakar/shilpawebappgaea'
         tags: |
-          $(tag)
+          '$(tag)'
