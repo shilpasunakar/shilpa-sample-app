@@ -36,6 +36,6 @@ stages:
       inputs:
         command: push
         containerRegistry: 'Shilpa-exto-dockerhub' 
-        repository: 'shilpasunakar / shilpawebappgaea'
+        repository: 'shilpasunakar/shilpawebappgaea'
         tags: |
           $(tag)
