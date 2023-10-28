@@ -35,6 +35,7 @@ stages:
       displayName: Push the image to Docker Hub
       inputs:
         command: push
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         containerRegistry: 'Shilpa-exto-dockerhub' 
         repository: 'shilpasunakar/shilpawebappgaea'
         tags: |
