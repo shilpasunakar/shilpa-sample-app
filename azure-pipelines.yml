@@ -5,7 +5,7 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildNumber)'
+  tag: '$(Build.BuildId)'
 
 stages:
 - stage: Build
@@ -36,6 +36,6 @@ stages:
       inputs:
         command: push
         containerRegistry: 'Shilpa-exto-dockerhub' 
-        repository: 'shilpasunakar/shilpawebappgaea'
+        repository: 'shilpasunakar / shilpawebappgaea'
         tags: |
           $(tag)
