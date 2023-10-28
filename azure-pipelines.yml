@@ -1,7 +1,3 @@
-# Docker
-# Build a Docker image
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
 trigger:
 - master
 
@@ -18,8 +14,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-     name: default
-      # vmImage: ubuntu-latest
+      vmImage: 'ubuntu-latest'
     steps:
     - task: Docker@2
       displayName: Build an image
@@ -28,14 +23,19 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
-        containerRegistry: Shilpa-exto-dockerhub  
+        containerRegistry: 'Shilpa-exto-dockerhub' 
 
-      
+    - task: Docker@2
+      displayName: Docker Login
+      inputs:
+        command: login
+        containerRegistry: 'Shilpa-exto-dockerhub' 
+
     - task: Docker@2
       displayName: Push the image to Docker Hub
       inputs:
         command: push
         containerRegistry: 'Shilpa-exto-dockerhub' 
-        repository: 'shilpasunakar/shilpawebappgaea' 
+        repository: 'shilpasunakar/shilpawebappgaea'
         tags: |
-          $(tag)  
+          $(tag)
