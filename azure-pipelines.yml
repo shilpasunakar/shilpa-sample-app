@@ -29,3 +29,13 @@ stages:
         tags: |
           $(tag)
         containerRegistry: Shilpa-exto-dockerhub  
+
+      
+    - task: Docker@2
+      displayName: Push the image to Docker Hub
+      inputs:
+        command: push
+        containerRegistry: 'Shilpa-exto-dockerhub' 
+        repository: 'shilpasunakar/shilpawebappgaea' 
+        tags: |
+          $(tag)  
