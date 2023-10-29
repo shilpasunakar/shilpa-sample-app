@@ -13,12 +13,12 @@ variables:
 
 stages:
 - stage: Build
-  displayName: Build and Push image
+  displayName: Build image
   jobs:
   - job: Build
     displayName: Build
     pool:
-     name: default
+      vmImage: ubuntu-latest
     steps:
     - task: Docker@2
       displayName: Build an image
@@ -27,11 +27,12 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
+
     - task: Docker@2
-      displayName: Push an image
+      displayName: Push the image to Docker Hub
       inputs:
         command: push
-        repository: 'shilpasunakar/shilpawebappgaea'
+        containerRegistry: Shilpa-exto-dockerhub # Your service connection name
+        repository: shilpasunakar/shilpawebappgaea # Your Docker Hub username and image name
         tags: |
           $(tag)
-        containerRegistry: Shilpa-exto-dockerhub 
