@@ -32,7 +32,7 @@ stages:
       displayName: Push the image to Docker Hub
       inputs:
         command: push
-        containerRegistry: Shilpa-exto-dockerhub # Your service connection name
-        repository: shilpasunakar/shilpawebappgaea # Your Docker Hub username and image name
+        containerRegistry: Shilpa-exto-dockerhub 
+        repository: shilpasunakar/shilpawebappgaea 
         tags: |
           $(tag)
